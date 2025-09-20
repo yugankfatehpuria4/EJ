@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java EE (Jakarta EE) - Complete Notes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            border: 1px solid #3c3c3c;
+            position: relative;
+        }
+        .code-block::before {
+            content: "Java";
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            background: #007acc;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .xml-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            border: 1px solid #3c3c3c;
+            position: relative;
+        }
+        .xml-block::before {
+            content: "XML";
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            background: #ff6600;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .html-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            border: 1px solid #3c3c3c;
+            position: relative;
+        }
+        .html-block::before {
+            content: "HTML";
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            background: #e34c26;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        /* VS Code syntax highlighting */
+        .keyword { color: #569cd6; font-weight: bold; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; font-style: italic; }
+        .annotation { color: #dcdcaa; }
+        .type { color: #4ec9b0; }
+        .method { color: #dcdcaa; }
+        .xml-tag { color: #569cd6; }
+        .xml-attr { color: #92c5f8; }
+        .xml-value { color: #ce9178; }
+        .highlight {
+            background: #f1c40f;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .important-box {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid #27ae60;
+        }
+        .warning-box {
+            background: #fdf2e7;
+            border: 1px solid #e67e22;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box {
+            background: #e8f4fd;
+            border: 1px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #ecf0f1;
+        }
+        .toc {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+        .toc a {
+            color: #ecdbff;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            color: #3498db;
+        }
+        .lifecycle-diagram {
+            text-align: center;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            border: 2px solid #95a5a6;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 Java EE (Jakarta EE) – Complete Study Notes</h1>
+        
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#servers-containers">1. Servers and Containers</a></li>
+                <li><a href="#architecture">2. Types of System Architecture</a></li>
+                <li><a href="#static-dynamic">3. Static vs Dynamic Web Applications</a></li>
+                <li><a href="#servlets">4. Servlets</a></li>
+                <li><a href="#session-management">5. Session Management</a></li>
+                <li><a href="#filters">6. Filters</a></li>
+                <li><a href="#file-handling">7. File Handling</a></li>
+                <li><a href="#advanced-concepts">8. Advanced Concepts</a></li>
+            </ul>
+        </div>
+
+        <h2 id="servers-containers">1. 🖥️ Servers and Containers</h2>
+        
+        <p>Java EE applications don't run directly on the operating system. They need a server (software that provides services to run applications). Inside the server, we have containers that provide the runtime environment.</p>
+
+        <h3>🔹 Server</h3>
+        <p>A server is software that listens to client requests, processes them, and returns responses.</p>
+        
+        <div class="important-box">
+            <strong>Examples:</strong><br>
+            <strong>Web Server</strong> → Handles HTTP requests (e.g., Apache HTTP Server)<br>
+            <strong>Application Server</strong> → Provides full Java EE support (e.g., GlassFish, WildFly, WebLogic, JBoss)
+        </div>
+
+        <div class="info-box">
+            👉 In Java EE, we usually use <span class="highlight">Application Servers</span> since they provide support for Servlets, JSP, EJB, JPA, Web Services etc.
+        </div>
+
+        <h3>🔹 Container</h3>
+        <p>A container is a runtime environment inside the server that manages the execution of components (Servlets, JSP, EJB).</p>
+
+        <h4>Types of Containers in Java EE:</h4>
+        <table>
+            <tr>
+                <th>Container Type</th>
+                <th>Purpose</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>Web Container</strong></td>
+                <td>Runs Servlets & JSP, manages lifecycle of servlets (init, service, destroy)</td>
+                <td>Tomcat (only web container)</td>
+            </tr>
+            <tr>
+                <td><strong>EJB Container</strong></td>
+                <td>Runs Enterprise Java Beans (EJB), provides services like transaction management, security, persistence</td>
+                <td>GlassFish, WildFly</td>
+            </tr>
+            <tr>
+                <td><strong>Application Client Container</strong></td>
+                <td>Runs Java applications that access server-side components</td>
+                <td>Desktop Java applications</td>
+            </tr>
+            <tr>
+                <td><strong>Applet Container</strong></td>
+                <td>Used to run Java applets inside browsers (now outdated)</td>
+                <td>Web browsers (rarely used now)</td>
+            </tr>
+        </table>
+
+        <div class="important-box">
+            📌 <strong>Summary:</strong><br>
+            <strong>Server</strong> = whole system<br>
+            <strong>Container</strong> = sub-environment that executes components
+        </div>
+
+        <h2 id="architecture">2. 🏗️ Types of System Architecture</h2>
+        
+        <p>Java EE follows multi-tier architecture (N-tier).</p>
+
+        <h3>🔹 1-Tier (Single-Tier)</h3>
+        <ul>
+            <li>Application runs on one machine</li>
+            <li><strong>Example:</strong> Standalone desktop apps (like MS Excel)</li>
+            <li><strong>Disadvantage:</strong> No scalability, everything is in one place</li>
+        </ul>
+
+        <h3>🔹 2-Tier (Client-Server)</h3>
+        <ul>
+            <li>Client (front-end) ↔ Server (back-end database)</li>
+            <li><strong>Example:</strong> ATM Machine ↔ Bank Database</li>
+            <li><strong>Disadvantage:</strong> Not flexible when scaling</li>
+        </ul>
+
+        <h3>🔹 3-Tier Architecture (Most Important in Java EE)</h3>
+        <p>Divides system into 3 layers:</p>
+        <table>
+            <tr>
+                <th>Layer</th>
+                <th>Purpose</th>
+                <th>Technologies</th>
+            </tr>
+            <tr>
+                <td><strong>Presentation Layer</strong></td>
+                <td>Client/UI</td>
+                <td>JSP/HTML/JSF</td>
+            </tr>
+            <tr>
+                <td><strong>Business Logic Layer</strong></td>
+                <td>Server/Logic</td>
+                <td>Servlets, EJB</td>
+            </tr>
+            <tr>
+                <td><strong>Data Layer</strong></td>
+                <td>Database</td>
+                <td>JDBC, JPA</td>
+            </tr>
+        </table>
+
+        <div class="important-box">
+            <strong>Benefits:</strong> Scalability, Maintainability, Security
+        </div>
+
+        <h3>🔹 N-Tier (Distributed)</h3>
+        <ul>
+            <li>Extension of 3-tier (can have more middle layers like caching, web services, microservices)</li>
+            <li><strong>Example:</strong> Large enterprise systems (e-commerce, banking apps)</li>
+        </ul>
+
+        <div class="info-box">
+            📌 <strong>Summary:</strong> Java EE usually uses <span class="highlight">3-Tier or N-Tier Architecture</span>
+        </div>
+
+        <h2 id="static-dynamic">3. 🌍 Static vs Dynamic Web Applications</h2>
+
+        <h3>🔹 Static Web Applications</h3>
+        <ul>
+            <li>Pages are fixed (prebuilt HTML/CSS)</li>
+            <li>Same content for every user</li>
+            <li>No interaction with database</li>
+            <li><strong>Example:</strong> Portfolio website, Company info page</li>
+            <li><strong>Tools:</strong> HTML, CSS, JavaScript</li>
+        </ul>
+
+        <h3>🔹 Dynamic Web Applications</h3>
+        <ul>
+            <li>Content changes dynamically based on user request</li>
+            <li>Interacts with database</li>
+            <li><strong>Example:</strong> Online Banking, Amazon, Social Media</li>
+        </ul>
+
+        <h4>Technologies Used:</h4>
+        <ul>
+            <li><strong>Frontend</strong> → JSP, JSF, Angular, React</li>
+            <li><strong>Backend</strong> → Servlet, EJB</li>
+            <li><strong>Database</strong> → MySQL, Oracle, MongoDB</li>
+        </ul>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Static Web App</th>
+                <th>Dynamic Web App</th>
+            </tr>
+            <tr>
+                <td><strong>Content</strong></td>
+                <td>Fixed</td>
+                <td>Changes per request</td>
+            </tr>
+            <tr>
+                <td><strong>Technologies</strong></td>
+                <td>HTML, CSS</td>
+                <td>JSP, Servlet, EJB, DB</td>
+            </tr>
+            <tr>
+                <td><strong>Database</strong></td>
+                <td>Not used</td>
+                <td>Used</td>
+            </tr>
+            <tr>
+                <td><strong>Example</strong></td>
+                <td>Portfolio site</td>
+                <td>E-commerce, Banking</td>
+            </tr>
+        </table>
+
+        <h2 id="servlets">4. ☕ Servlets</h2>
+
+        <h3>Introduction to Servlets</h3>
+        <ul>
+            <li>A Servlet is a Java class used to handle HTTP requests and responses in a web application</li>
+            <li>It runs inside a Web Container (e.g., Tomcat, GlassFish)</li>
+            <li>Replaces CGI (Common Gateway Interface) because Servlets are faster, portable, scalable</li>
+        </ul>
+
+        <h4>Features of Servlets:</h4>
+        <ul>
+            <li><strong>Platform-independent</strong> (Java)</li>
+            <li><strong>Efficient</strong> (uses threads, not processes like CGI)</li>
+            <li><strong>Secure</strong> (uses Java security model)</li>
+            <li><strong>Integrates</strong> with Java EE technologies (JDBC, JSP, EJB)</li>
+        </ul>
+
+        <h3>Hello World Servlet (Step-by-Step)</h3>
+
+        <h4>a) Writing Your First Servlet</h4>
+        <div class="code-block">
+<span class="keyword">import</span> java.io.*;
+<span class="keyword">import</span> jakarta.servlet.*;
+<span class="keyword">import</span> jakarta.servlet.http.*;
+
+<span class="keyword">public class</span> <span class="type">HelloServlet</span> <span class="keyword">extends</span> <span class="type">HttpServlet</span> {
+    <span class="keyword">public void</span> <span class="method">doGet</span>(<span class="type">HttpServletRequest</span> request, <span class="type">HttpServletResponse</span> response) 
+            <span class="keyword">throws</span> <span class="type">IOException</span> {
+        response.<span class="method">setContentType</span>(<span class="string">"text/html"</span>);
+        <span class="type">PrintWriter</span> out = response.<span class="method">getWriter</span>();
+        out.<span class="method">println</span>(<span class="string">"&lt;h1&gt;Hello, World! This is my first Servlet&lt;/h1&gt;"</span>);
+    }
+}
+        </div>
+
+        <h4>b) doGet() vs doPost()</h4>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Usage</th>
+                <th>Example</th>
+                <th>Characteristics</th>
+            </tr>
+            <tr>
+                <td><strong>doGet()</strong></td>
+                <td>Data sent via URL parameters</td>
+                <td>http://example.com?name=John</td>
+                <td>Data visible in URL, limited size</td>
+            </tr>
+            <tr>
+                <td><strong>doPost()</strong></td>
+                <td>Data sent in request body</td>
+                <td>Form submissions with passwords</td>
+                <td>More secure, larger data, not visible in URL</td>
+            </tr>
+        </table>
+
+        <div class="info-box">
+            📌 <strong>Exam Tip:</strong> GET is idempotent (safe for multiple calls), POST is not.
+        </div>
+
+        <h4>c) Deployment with web.xml</h4>
+        <p>Every servlet needs to be mapped so the server knows its URL.</p>
+
+        <div class="xml-block">
+<span class="xml-tag">&lt;web-app&gt;</span>
+  <span class="xml-tag">&lt;servlet&gt;</span>
+    <span class="xml-tag">&lt;servlet-name&gt;</span>HelloServlet<span class="xml-tag">&lt;/servlet-name&gt;</span>
+    <span class="xml-tag">&lt;servlet-class&gt;</span>HelloServlet<span class="xml-tag">&lt;/servlet-class&gt;</span>
+    <span class="xml-tag">&lt;load-on-startup&gt;</span>1<span class="xml-tag">&lt;/load-on-startup&gt;</span>
+  <span class="xml-tag">&lt;/servlet&gt;</span>
+
+  <span class="xml-tag">&lt;servlet-mapping&gt;</span>
+    <span class="xml-tag">&lt;servlet-name&gt;</span>HelloServlet<span class="xml-tag">&lt;/servlet-name&gt;</span>
+    <span class="xml-tag">&lt;url-pattern&gt;</span>/hello<span class="xml-tag">&lt;/url-pattern&gt;</span>
+  <span class="xml-tag">&lt;/servlet-mapping&gt;</span>
+<span class="xml-tag">&lt;/web-app&gt;</span>
+        </div>
+
+        <div class="info-box">
+            Now, you can access servlet at:<br>
+            👉 <code>http://localhost:8080/MyApp/hello</code>
+        </div>
+
+        <h4>d) Annotation-Based Configuration (@WebServlet)</h4>
+        <p>Instead of web.xml, we can use annotations:</p>
+
+        <div class="code-block">
+<span class="keyword">import</span> jakarta.servlet.annotation.WebServlet;
+
+<span class="annotation">@WebServlet</span>(<span class="string">"/hello"</span>)
+<span class="keyword">public class</span> <span class="type">HelloServlet</span> <span class="keyword">extends</span> <span class="type">HttpServlet</span> {
+    <span class="comment">// same doGet code</span>
+}
+        </div>
+
+        <h4>e) LoadOnStartup</h4>
+        <ul>
+            <li>Defines whether servlet should load at application startup or only when first requested</li>
+            <li><strong>1</strong> (or any positive number) → load on startup</li>
+            <li><strong>Omit or negative</strong> → load on first request</li>
+        </ul>
+
+        <h3>Servlet Life Cycle</h3>
+        <p>A servlet's life cycle is managed by the Servlet Container.</p>
+
+        <table>
+            <tr>
+                <th>Phase</th>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Loading & Instantiation</strong></td>
+                <td>-</td>
+                <td>Servlet class is loaded, Object created (only once)</td>
+            </tr>
+            <tr>
+                <td><strong>Initialization</strong></td>
+                <td>init()</td>
+                <td>Called once when servlet is first created. Used to allocate resources (e.g., DB connection)</td>
+            </tr>
+            <tr>
+                <td><strong>Request Handling</strong></td>
+                <td>service(), doGet(), doPost()</td>
+                <td>For each request, a new thread is created. Calls appropriate method</td>
+            </tr>
+            <tr>
+                <td><strong>Destruction</strong></td>
+                <td>destroy()</td>
+                <td>Called once before servlet is removed from service. Used to free resources</td>
+            </tr>
+        </table>
+
+        <div class="lifecycle-diagram">
+            Client → Request → Container → init() → service() → doGet()/doPost() → Response
+        </div>
+
+        <h3>Request and Response Handling</h3>
+
+        <h4>a) HttpServletRequest Methods</h4>
+        <p>This object represents the incoming request.</p>
+
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>getParameter(String name)</code></td>
+                <td>Get form/query parameter</td>
+            </tr>
+            <tr>
+                <td><code>getHeader(String name)</code></td>
+                <td>Get HTTP header value</td>
+            </tr>
+            <tr>
+                <td><code>getCookies()</code></td>
+                <td>Returns cookies sent by client</td>
+            </tr>
+            <tr>
+                <td><code>getMethod()</code></td>
+                <td>Returns HTTP method (GET/POST)</td>
+            </tr>
+            <tr>
+                <td><code>getRequestURL() / getRequestURI()</code></td>
+                <td>Full URL or URI</td>
+            </tr>
+            <tr>
+                <td><code>getRemoteAddr()</code></td>
+                <td>Client IP address</td>
+            </tr>
+        </table>
+
+        <div class="code-block">
+<span class="type">String</span> user = request.<span class="method">getParameter</span>(<span class="string">"username"</span>);
+<span class="type">String</span> agent = request.<span class="method">getHeader</span>(<span class="string">"User-Agent"</span>);
+        </div>
+
+        <h4>b) HttpServletResponse Methods</h4>
+        <p>This object represents the response sent to client.</p>
+
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>setContentType("text/html")</code></td>
+                <td>Define response type</td>
+            </tr>
+            <tr>
+                <td><code>sendRedirect("newPage.jsp")</code></td>
+                <td>Redirect to another resource</td>
+            </tr>
+            <tr>
+                <td><code>setHeader("key", "value")</code></td>
+                <td>Set response header</td>
+            </tr>
+            <tr>
+                <td><code>addCookie(Cookie c)</code></td>
+                <td>Add cookie to response</td>
+            </tr>
+            <tr>
+                <td><code>getWriter()</code></td>
+                <td>Send text response</td>
+            </tr>
+            <tr>
+                <td><code>getOutputStream()</code></td>
+                <td>Send binary response (images, files)</td>
+            </tr>
+        </table>
+
+        <h4>c) Sending HTML Response from Servlet</h4>
+        <div class="code-block">
+<span class="keyword">public void</span> <span class="method">doGet</span>(<span class="type">HttpServletRequest</span> request, <span class="type">HttpServletResponse</span> response) 
+        <span class="keyword">throws</span> <span class="type">IOException</span> {
+    response.<span class="method">setContentType</span>(<span class="string">"text/html"</span>);
+    <span class="type">PrintWriter</span> out = response.<span class="method">getWriter</span>();
+    out.<span class="method">println</span>(<span class="string">"&lt;html&gt;&lt;body&gt;"</span>);
+    out.<span class="method">println</span>(<span class="string">"&lt;h2&gt;Welcome "</span> + request.<span class="method">getParameter</span>(<span class="string">"username"</span>) + <span class="string">"&lt;/h2&gt;"</span>);
+    out.<span class="method">println</span>(<span class="string">"&lt;/body&gt;&lt;/html&gt;"</span>);
+}
+        </div>
+
+        <h2 id="session-management">5. 🔐 Session Management</h2>
+
+        <h3>HTTP is Stateless</h3>
+        <ul>
+            <li>HTTP doesn't remember client data between requests</li>
+            <li>Each request is independent → server cannot identify the same user across multiple requests</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>Example:</strong> In an e-commerce site, if session is not maintained:<br>
+            You log in → go to cart → login info lost
+        </div>
+
+        <div class="important-box">
+            👉 <strong>Solution</strong> → Session Management = technique to maintain state across multiple requests
+        </div>
+
+        <h3>1. Cookies</h3>
+        <p>A cookie is a small piece of data stored in client's browser. Sent along with every request to server.</p>
+
+        <h4>a) Creating a Cookie</h4>
+        <div class="code-block">
+<span class="type">Cookie</span> cookie = <span class="keyword">new</span> <span class="type">Cookie</span>(<span class="string">"username"</span>, <span class="string">"John"</span>);
+cookie.<span class="method">setMaxAge</span>(<span class="string">60*60</span>); <span class="comment">// valid for 1 hour</span>
+response.<span class="method">addCookie</span>(cookie);
+        </div>
+
+        <h4>b) Reading a Cookie</h4>
+        <div class="code-block">
+<span class="type">Cookie</span>[] cookies = request.<span class="method">getCookies</span>();
+<span class="keyword">for</span>(<span class="type">Cookie</span> c : cookies) {
+    <span class="keyword">if</span>(c.<span class="method">getName</span>().<span class="method">equals</span>(<span class="string">"username"</span>)) {
+        out.<span class="method">println</span>(<span class="string">"Welcome back "</span> + c.<span class="method">getValue</span>());
+    }
+}
+        </div>
+
+        <h4>c) Deleting a Cookie</h4>
+        <div class="code-block">
+<span class="type">Cookie</span> cookie = <span class="keyword">new</span> <span class="type">Cookie</span>(<span class="string">"username"</span>, <span class="string">""</span>);
+cookie.<span class="method">setMaxAge</span>(<span class="string">0</span>); <span class="comment">// delete immediately</span>
+response.<span class="method">addCookie</span>(cookie);
+        </div>
+
+        <div class="warning-box">
+            📌 <strong>Drawback:</strong> User can disable cookies in browser
+        </div>
+
+        <h3>2. HttpSession API</h3>
+        <p>HttpSession object = server-side session tracking mechanism. Container creates a unique session ID (stored as cookie or in URL).</p>
+
+        <div class="code-block">
+<span class="type">HttpSession</span> session = request.<span class="method">getSession</span>();
+session.<span class="method">setAttribute</span>(<span class="string">"user"</span>, <span class="string">"John"</span>);   <span class="comment">// store value</span>
+
+<span class="type">String</span> name = (<span class="type">String</span>) session.<span class="method">getAttribute</span>(<span class="string">"user"</span>);  <span class="comment">// retrieve</span>
+
+session.<span class="method">invalidate</span>();  <span class="comment">// destroy session</span>
+        </div>
+
+        <div class="important-box">
+            <strong>Benefits:</strong> Secure (stored on server, not browser)
+        </div>
+
+        <h3>3. URL Rewriting</h3>
+        <ul>
+            <li>Session ID is appended to the URL when cookies are disabled</li>
+            <li><strong>Example:</strong> http://example.com/home.jsp;jsessionid=12345</li>
+        </ul>
+
+        <div class="code-block">
+<span class="type">String</span> newURL = response.<span class="method">encodeURL</span>(<span class="string">"home.jsp"</span>);
+        </div>
+
+        <h3>4. Hidden Form Fields</h3>
+        <p>Store session data inside hidden &lt;input&gt; fields in HTML forms.</p>
+
+        <div class="html-block">
+<span class="xml-tag">&lt;form</span> <span class="xml-attr">action</span>=<span class="xml-value">"nextServlet"</span><span class="xml-tag">&gt;</span>
+   <span class="xml-tag">&lt;input</span> <span class="xml-attr">type</span>=<span class="xml-value">"hidden"</span> <span class="xml-attr">name</span>=<span class="xml-value">"userId"</span> <span class="xml-attr">value</span>=<span class="xml-value">"12345"</span><span class="xml-tag">&gt;</span>
+   <span class="xml-tag">&lt;input</span> <span class="xml-attr">type</span>=<span class="xml-value">"submit"</span> <span class="xml-attr">value</span>=<span class="xml-value">"Next"</span><span class="xml-tag">&gt;</span>
+<span class="xml-tag">&lt;/form&gt;</span>
+        </div>
+
+        <div class="warning-box">
+            Works only with form submission
+        </div>
+
+        <h3>✅ Comparison of Session Management Techniques</h3>
+        <table>
+            <tr>
+                <th>Technique</th>
+                <th>Stored in</th>
+                <th>Advantages</th>
+                <th>Disadvantages</th>
+            </tr>
+            <tr>
+                <td><strong>Cookies</strong></td>
+                <td>Client</td>
+                <td>Simple, automatic</td>
+                <td>Can be disabled</td>
+            </tr>
+            <tr>
+                <td><strong>HttpSession</strong></td>
+                <td>Server</td>
+                <td>Secure, automatic</td>
+                <td>More server memory</td>
+            </tr>
+            <tr>
+                <td><strong>URL Rewriting</strong></td>
+                <td>URL</td>
+                <td>Works without cookies</td>
+                <td>Exposes data in URL</td>
+            </tr>
+            <tr>
+                <td><strong>Hidden Form Fields</strong></td>
+                <td>Form</td>
+                <td>Simple</td>
+                <td>Only works with form submission</td>
+            </tr>
+        </table>
+
+        <h2 id="filters">6. 🔍 Filters</h2>
+
+        <h3>What are Filters?</h3>
+        <ul>
+            <li>Filter = object that intercepts requests and responses before servlet or JSP executes</li>
+            <li>Used for preprocessing (request) and postprocessing (response)</li>
+        </ul>
+
+        <h3>Writing a Filter</h3>
+        <div class="code-block">
+<span class="keyword">import</span> jakarta.servlet.*;
+<span class="keyword">import</span> jakarta.servlet.annotation.WebFilter;
+<span class="keyword">import</span> java.io.IOException;
+
+<span class="annotation">@WebFilter</span>(<span class="string">"/secure/*"</span>)
+<span class="keyword">public class</span> <span class="type">AuthFilter</span> <span class="keyword">implements</span> <span class="type">Filter</span> {
+    <span class="keyword">public void</span> <span class="method">doFilter</span>(<span class="type">ServletRequest</span> request, <span class="type">ServletResponse</span> response, 
+                        <span class="type">FilterChain</span> chain) <span class="keyword">throws</span> <span class="type">IOException</span>, <span class="type">ServletException</span> {
+        
+        <span class="type">System</span>.out.<span class="method">println</span>(<span class="string">"Request intercepted!"</span>);
+        
+        <span class="comment">// Continue request</span>
+        chain.<span class="method">doFilter</span>(request, response);
+        
+        <span class="type">System</span>.out.<span class="method">println</span>(<span class="string">"Response modified!"</span>);
+    }
+}
+        </div>
+
+        <h3>Configuring Filter in web.xml</h3>
+        <div class="xml-block">
+<span class="xml-tag">&lt;filter&gt;</span>
+  <span class="xml-tag">&lt;filter-name&gt;</span>AuthFilter<span class="xml-tag">&lt;/filter-name&gt;</span>
+  <span class="xml-tag">&lt;filter-class&gt;</span>AuthFilter<span class="xml-tag">&lt;/filter-class&gt;</span>
+<span class="xml-tag">&lt;/filter&gt;</span>
+
+<span class="xml-tag">&lt;filter-mapping&gt;</span>
+  <span class="xml-tag">&lt;filter-name&gt;</span>AuthFilter<span class="xml-tag">&lt;/filter-name&gt;</span>
+  <span class="xml-tag">&lt;url-pattern&gt;</span>/secure/*<span class="xml-tag">&lt;/url-pattern&gt;</span>
+<span class="xml-tag">&lt;/filter-mapping&gt;</span>
+        </div>
+
+        <h3>Filter Use Cases</h3>
+        <ul>
+            <li><strong>Logging</strong> → Track requests & responses</li>
+            <li><strong>Authentication</strong> → Check if user is logged in</li>
+            <li><strong>Compression</strong> → Compress response before sending</li>
+            <li><strong>Security</strong> → Prevent XSS, SQL Injection</li>
+        </ul>
+
+        <div class="info-box">
+            📌 <strong>Exam Tip:</strong> Filters do not create responses themselves → they only modify requests/responses
+        </div>
+
+        <h2 id="file-handling">7. 📁 File Handling</h2>
+
+        <p>Servlets can handle file upload & download.</p>
+
+        <h3>1. File Upload (Multipart)</h3>
+        <p>Requires multipart/form-data in HTML form.</p>
+
+        <div class="html-block">
+<span class="xml-tag">&lt;form</span> <span class="xml-attr">action</span>=<span class="xml-value">"upload"</span> <span class="xml-attr">method</span>=<span class="xml-value">"post"</span> <span class="xml-attr">enctype</span>=<span class="xml-value">"multipart/form-data"</span><span class="xml-tag">&gt;</span>
+   <span class="xml-tag">&lt;input</span> <span class="xml-attr">type</span>=<span class="xml-value">"file"</span> <span class="xml-attr">name</span>=<span class="xml-value">"myfile"</span><span class="xml-tag">&gt;</span>
+   <span class="xml-tag">&lt;input</span> <span class="xml-attr">type</span>=<span class="xml-value">"submit"</span> <span class="xml-attr">value</span>=<span class="xml-value">"Upload"</span><span class="xml-tag">&gt;</span>
+<span class="xml-tag">&lt;/form&gt;</span>
+        </div>
+
+        <p>Servlet handling (using Servlet 3.0+ @MultipartConfig):</p>
+
+        <div class="code-block">
+<span class="annotation">@WebServlet</span>(<span class="string">"/upload"</span>)
+<span class="annotation">@MultipartConfig</span>
+<span class="keyword">public class</span> <span class="type">FileUploadServlet</span> <span class="keyword">extends</span> <span class="type">HttpServlet</span> {
+    <span class="keyword">protected void</span> <span class="method">doPost</span>(<span class="type">HttpServletRequest</span> request, <span class="type">HttpServletResponse</span> response)
+            <span class="keyword">throws</span> <span class="type">IOException</span>, <span class="type">ServletException</span> {
+        <span class="type">Part</span> filePart = request.<span class="method">getPart</span>(<span class="string">"myfile"</span>);
+        <span class="type">String</span> fileName = filePart.<span class="method">getSubmittedFileName</span>();
+        filePart.<span class="method">write</span>(<span class="string">"uploads/"</span> + fileName);
+    }
+}
+        </div>
+
+        <h3>2. File Download</h3>
+        <div class="code-block">
+<span class="type">File</span> file = <span class="keyword">new</span> <span class="type">File</span>(<span class="string">"uploads/sample.pdf"</span>);
+response.<span class="method">setContentType</span>(<span class="string">"application/pdf"</span>);
+response.<span class="method">setHeader</span>(<span class="string">"Content-Disposition"</span>,<span class="string">"attachment;filename=sample.pdf"</span>);
+
+<span class="type">FileInputStream</span> in = <span class="keyword">new</span> <span class="type">FileInputStream</span>(file);
+<span class="type">OutputStream</span> out = response.<span class="method">getOutputStream</span>();
+
+<span class="keyword">byte</span>[] buffer = <span class="keyword">new byte</span>[<span class="string">1024</span>];
+<span class="keyword">int</span> length;
+<span class="keyword">while</span>((length = in.<span class="method">read</span>(buffer)) > <span class="string">0</span>) {
+    out.<span class="method">write</span>(buffer, <span class="string">0</span>, length);
+}
+
+in.<span class="method">close</span>();
+out.<span class="method">close</span>();
+        </div>
+
+        <h2 id="advanced-concepts">8. 🚀 Advanced Concepts & Exam Tips</h2>
+
+        <h3>Java EE Services Provided by Containers</h3>
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>JNDI</strong></td>
+                <td>Naming service</td>
+            </tr>
+            <tr>
+                <td><strong>JMS</strong></td>
+                <td>Messaging</td>
+            </tr>
+            <tr>
+                <td><strong>JPA</strong></td>
+                <td>Persistence</td>
+            </tr>
+            <tr>
+                <td><strong>JTA</strong></td>
+                <td>Transaction management</td>
+            </tr>
+            <tr>
+                <td><strong>JAAS</strong></td>
+                <td>Authentication & Authorization</td>
+            </tr>
+        </table>
+
+        <h3>Popular Java EE Servers</h3>
+        <table>
+            <tr>
+                <th>Server</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Apache Tomcat</strong></td>
+                <td>Web Container</td>
+                <td>Web container only</td>
+            </tr>
+            <tr>
+                <td><strong>GlassFish</strong></td>
+                <td>Application Server</td>
+                <td>Full Java EE server</td>
+            </tr>
+            <tr>
+                <td><strong>WildFly/JBoss</strong></td>
+                <td>Application Server</td>
+                <td>Popular enterprise server</td>
+            </tr>
+            <tr>
+                <td><strong>WebLogic / WebSphere</strong></td>
+                <td>Application Server</td>
+                <td>Enterprise-grade</td>
+            </tr>
+        </table>
+
+        <h3>Servlet Lifecycle Example</h3>
+        <div class="code-block">
+<span class="keyword">public class</span> <span class="type">LifecycleServlet</span> <span class="keyword">extends</span> <span class="type">HttpServlet</span> {
+    
+    <span class="annotation">@Override</span>
+    <span class="keyword">public void</span> <span class="method">init</span>() <span class="keyword">throws</span> <span class="type">ServletException</span> {
+        <span class="type">System</span>.out.<span class="method">println</span>(<span class="string">"init() → Called once at startup"</span>);
+    }
+    
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected void</span> <span class="method">service</span>(<span class="type">HttpServletRequest</span> req, <span class="type">HttpServletResponse</span> resp) 
+            <span class="keyword">throws</span> <span class="type">ServletException</span>, <span class="type">IOException</span> {
+        <span class="type">System</span>.out.<span class="method">println</span>(<span class="string">"service() → Handles request/response"</span>);
+        <span class="keyword">super</span>.<span class="method">service</span>(req, resp);
+    }
+    
+    <span class="annotation">@Override</span>
+    <span class="keyword">public void</span> <span class="method">destroy</span>() {
+        <span class="type">System</span>.out.<span class="method">println</span>(<span class="string">"destroy() → Cleanup before shutting down"</span>);
+    }
+}
+        </div>
+
+        <h3>ServletConfig vs ServletContext</h3>
+        <table>
+            <tr>
+                <th>ServletConfig</th>
+                <th>ServletContext</th>
+            </tr>
+            <tr>
+                <td>Config for a single servlet</td>
+                <td>Global config shared by all servlets</td>
+            </tr>
+            <tr>
+                <td>One per servlet</td>
+                <td>One per web application</td>
+            </tr>
+            <tr>
+                <td>Used for servlet-specific parameters</td>
+                <td>Used for application-wide parameters</td>
+            </tr>
+        </table>
+
+        <h3>Session Management Comparison</h3>
+        <div class="important-box">
+            <strong>Key Points:</strong><br>
+            • Session Management is critical because HTTP is stateless<br>
+            • HttpSession is most widely used in real-world Java EE projects<br>
+            • Filters are applied in chain → multiple filters can wrap around each other (Filter Chain)<br>
+            • File Handling requires multipart encoding<br>
+            • Security Tip: Always validate file type & size before saving uploads
+        </div>
+
+        <h3>Thread-Safety in Servlets</h3>
+        <div class="warning-box">
+            <strong>Important:</strong><br>
+            • Servlets are multi-threaded<br>
+            • If you use shared variables, you must handle synchronization<br>
+            • Each request creates a new thread<br>
+            • Instance variables are shared across threads
+        </div>
+
+        <h3>Difference between Servlet and JSP</h3>
+        <table>
+            <tr>
+                <th>Servlet</th>
+                <th>JSP</th>
+            </tr>
+            <tr>
+                <td>Java code generating HTML</td>
+                <td>HTML with embedded Java</td>
+            </tr>
+            <tr>
+                <td>Better for logic</td>
+                <td>Easier for UI</td>
+            </tr>
+            <tr>
+                <td>Compiled to .class</td>
+                <td>Translated to servlet</td>
+            </tr>
+            <tr>
+                <td>More coding required</td>
+                <td>Less coding for presentation</td>
+            </tr>
+        </table>
+
+        <h3>📚 Important Exam Points</h3>
+        <div class="info-box">
+            <strong>Remember for Exams:</strong><br>
+            1. <strong>HTTP is stateless</strong> - this is why session management is needed<br>
+            2. <strong>Servlet lifecycle:</strong> init() → service() → destroy()<br>
+            3. <strong>doGet() vs doPost():</strong> GET is idempotent, POST is not<br>
+            4. <strong>Session techniques:</strong> Cookies, HttpSession, URL Rewriting, Hidden Fields<br>
+            5. <strong>Filter chain:</strong> Filters can be chained together<br>
+            6. <strong>3-tier architecture:</strong> Presentation → Business → Data<br>
+            7. <strong>Container types:</strong> Web, EJB, Application Client, Applet<br>
+            8. <strong>Thread safety:</strong> Servlets are multi-threaded
+        </div>
+
+        <div class="lifecycle-diagram">
+            <strong>Complete Request Flow:</strong><br>
+            Client Request → Web Server → Servlet Container → Filter Chain → Servlet → Response
+        </div>
+
+        <footer style="text-align: center; margin-top: 50px; padding: 20px; border-top: 2px solid #3498db; color: #7f8c8d;">
+            <h3>📖 Study Tips</h3>
+            <p>Practice coding all the servlet examples, understand the lifecycle, and focus on session management techniques for your exams!</p>
+            <p><strong>Good luck with your Java EE studies! 🚀</strong></p>
+        </footer>
+    </div>
+</body>
+</html>
